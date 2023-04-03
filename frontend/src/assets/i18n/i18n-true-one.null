@@ -1,0 +1,75 @@
+{
+    'Client': {
+            'CREATE': {
+                  'DIALOG_HEADER': 'Client',
+                  'TAB-HEADER': 'Client',
+                  'VALIDATE': 'OK',
+                  'ACTION': 'Action',
+                  'SAVE': 'OK',
+            },
+            'EDIT': {
+                  'DIALOG_HEADER': 'Client',
+                  'TAB-HEADER': 'Client',
+                  'VALIDATE': 'OK',
+                  'ACTION': 'Action',
+                  'SAVE': 'OK',
+            },
+    },
+    'Produit': {
+            'CREATE': {
+                  'DIALOG_HEADER': 'Produit',
+                  'TAB-HEADER': 'Produit',
+                  'VALIDATE': 'OK',
+                  'ACTION': 'Action',
+                  'SAVE': 'OK',
+            },
+            'EDIT': {
+                  'DIALOG_HEADER': 'Produit',
+                  'TAB-HEADER': 'Produit',
+                  'VALIDATE': 'OK',
+                  'ACTION': 'Action',
+                  'SAVE': 'OK',
+            },
+    },
+    'Achat': {
+            'CREATE': {
+                  'DIALOG_HEADER': 'Achat',
+                  'TAB-HEADER': 'Achat',
+                  'VALIDATE': 'OK',
+                  'ACTION': 'Action',
+                  'SAVE': 'OK',
+                  'ACHAT-ITEMS-TAB-PAN-HEADER': 'items',
+                  'ACHAT-LABEL': 'Achat',
+                  'ACHAT-PLACEHOLDER': 'Achat',
+                  'ACHAT-ITEMS-COL': 'Achat items',
+            },
+            'EDIT': {
+                  'DIALOG_HEADER': 'Achat',
+                  'TAB-HEADER': 'Achat',
+                  'VALIDATE': 'OK',
+                  'ACTION': 'Action',
+                  'SAVE': 'OK',
+                  'ACHAT-ITEMS-TAB-PAN-HEADER': 'items',
+                  'ACHAT-LABEL': 'Achat',
+                  'ACHAT-PLACEHOLDER': 'Achat',
+                  'ACHAT-ITEMS-COL': 'Achat items',
+            },
+    },
+    'AchatItem': {
+            'CREATE': {
+                  'DIALOG_HEADER': 'Achat item',
+                  'TAB-HEADER': 'Achat item',
+                  'VALIDATE': 'OK',
+                  'ACTION': 'Action',
+                  'SAVE': 'OK',
+            },
+            'EDIT': {
+                  'DIALOG_HEADER': 'Achat item',
+                  'TAB-HEADER': 'Achat item',
+                  'VALIDATE': 'OK',
+                  'ACTION': 'Action',
+                  'SAVE': 'OK',
+            },
+    },
+
+}

@@ -1,0 +1,116 @@
+{
+    'Les éléments de {first} à {last} sur {totalRecords} ': 'Les éléments de {first} à {last} sur {totalRecords} ',
+    'clientHeader': 'Liste des clients',
+    'searchInput': 'Chercher...',
+    'clientTabPan': 'Client',
+
+
+        'Id': 'Id',
+            'clientCin': 'Cin',
+
+        'Cin': 'Cin',
+            'clientNom': 'Nom',
+
+        'Nom': 'Nom',
+            'clientTel': 'Tel',
+
+        'Tel': 'Tel',
+            'clientEmail': 'Email',
+
+        'Email': 'Email',
+            'clientAdresse': 'Adresse',
+
+        'Adresse': 'Adresse',
+            'clientDescription': 'Description',
+
+        'Description': 'Description',
+            'clientCreance': 'Creance',
+
+        'Creance': 'Creance',
+    'Les éléments de {first} à {last} sur {totalRecords} ': 'Les éléments de {first} à {last} sur {totalRecords} ',
+    'produitHeader': 'Liste des produits',
+    'searchInput': 'Chercher...',
+    'produitTabPan': 'Produit',
+
+
+        'Id': 'Id',
+            'produitReference': 'Reference',
+
+        'Reference': 'Reference',
+            'produitLibelle': 'Libelle',
+
+        'Libelle': 'Libelle',
+            'produitBarcode': 'Barcode',
+
+        'Barcode': 'Barcode',
+            'produitDiscription': 'Discription',
+
+        'Discription': 'Discription',
+            'produitPrixAchatMoyen': 'Prix achat moyen',
+
+        'Prix achat moyen': 'Prix achat moyen',
+            'produitQuantite': 'Quantite',
+
+        'Quantite': 'Quantite',
+            'produitSeuilAlert': 'Seuil alert',
+
+        'Seuil alert': 'Seuil alert',
+    'Les éléments de {first} à {last} sur {totalRecords} ': 'Les éléments de {first} à {last} sur {totalRecords} ',
+    'achatHeader': 'Liste des achats',
+    'searchInput': 'Chercher...',
+    'achatTabPan': 'Achat',
+
+
+        'Id': 'Id',
+            'achatReference': 'Reference',
+
+        'Reference': 'Reference',
+            'achatDateAchat': 'Date achat',
+
+        'Date achat': 'Date achat',
+            'achatTotal': 'Total',
+
+        'Total': 'Total',
+            'achatTotalPaye': 'Total paye',
+
+        'Total paye': 'Total paye',
+            'achatDescription': 'Description',
+
+        'Description': 'Description',
+            'achatClient': 'Client',
+
+        'Client': 'Client',
+            'achatAchatItems': 'Achat items',
+
+        'Achat items': 'Achat items',
+    'Les éléments de {first} à {last} sur {totalRecords} ': 'Les éléments de {first} à {last} sur {totalRecords} ',
+    'achatItemHeader': 'Liste des achat items',
+    'searchInput': 'Chercher...',
+    'achatItemTabPan': 'Achat item',
+
+
+        'Id': 'Id',
+            'achatItemProduit': 'Produit',
+
+        'Produit': 'Produit',
+            'achatItemPrixUnitaire': 'Prix unitaire',
+
+        'Prix unitaire': 'Prix unitaire',
+            'achatItemPrixVente': 'Prix vente',
+
+        'Prix vente': 'Prix vente',
+            'achatItemQuantite': 'Quantite',
+
+        'Quantite': 'Quantite',
+            'achatItemQuantiteAvoir': 'Quantite avoir',
+
+        'Quantite avoir': 'Quantite avoir',
+            'achatItemRemise': 'Remise',
+
+        'Remise': 'Remise',
+            'achatItemAchat': 'Achat',
+
+        'Achat': 'Achat',
+}
+
+
