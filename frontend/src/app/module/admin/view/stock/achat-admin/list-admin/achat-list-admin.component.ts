@@ -26,6 +26,8 @@ export class AchatListAdminComponent extends AbstractListController<AchatDto, Ac
     fileName = 'Achat';
 
     clients :Array<ClientDto>;
+
+    tokenExpired = false;
   
     constructor(datePipe: DatePipe, achatService: AchatService, messageService: MessageService, confirmationService: ConfirmationService
         , roleService: RoleService, router: Router , authService: AuthService , exportService: ExportService
@@ -39,6 +41,23 @@ export class AchatListAdminComponent extends AbstractListController<AchatDto, Ac
       this.initCol();
       this.loadClient();
     }
+
+    checkForExpiredToken() {
+        // Check whether the token has expired...
+        if (this.tokenExpired) {
+          // Display the notification...
+          this.messageService.add({
+            severity: 'warn',
+            summary: 'Session Expired',
+            detail: 'Your session has expired. Please log in again.'
+          });
+    
+          // Redirect the user to the login page after a delay...
+          setTimeout(() => {
+            this.router.navigateByUrl('/admin/login');
+          }, 3000); // 3 second delay
+        }
+      }
 
     public async loadAchats(){
         await this.roleService.findAll();

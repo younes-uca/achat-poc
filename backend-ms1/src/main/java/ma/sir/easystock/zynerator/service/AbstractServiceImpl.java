@@ -3,6 +3,7 @@ package ma.sir.easystock.zynerator.service;
 import ma.sir.easystock.zynerator.audit.AuditBusinessObject;
 import ma.sir.easystock.zynerator.criteria.BaseCriteria;
 import ma.sir.easystock.zynerator.dto.AuditEntityDto;
+import ma.sir.easystock.zynerator.dto.FileTempDto;
 import ma.sir.easystock.zynerator.exception.BusinessRuleException;
 import ma.sir.easystock.zynerator.exception.EntityNotFoundException;
 import ma.sir.easystock.zynerator.history.HistBusinessObject;
@@ -19,13 +20,22 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import static java.nio.file.Files.copy;
+import static java.nio.file.Paths.get;
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public abstract class AbstractServiceImpl<T extends AuditBusinessObject, H extends HistBusinessObject, CRITERIA extends BaseCriteria, HC extends HistCriteria, REPO extends AbstractRepository<T, Long>, HISTREPO extends AbstractHistoryRepository<H, Long>> extends AbstractServiceImplHelper<T> {
 
@@ -440,5 +450,16 @@ public abstract class AbstractServiceImpl<T extends AuditBusinessObject, H exten
             }
         }
         return result;
+    }
+
+    public ResponseEntity<List<String>> uploadd(@RequestParam("files") MultipartFile[] multipartFiles) throws Exception {
+        List<String> filenames = new ArrayList<>();
+        for (MultipartFile file: multipartFiles) {
+            String filename = StringUtils.cleanPath(file.getOriginalFilename());
+            Path fileStorage = get(UPLOADED_FOLDER, filename).toAbsolutePath().normalize();
+            copy(file.getInputStream(), fileStorage, REPLACE_EXISTING);
+            filenames.add(filename);
+        }
+     return ResponseEntity.ok().body(filenames);
     }
 }

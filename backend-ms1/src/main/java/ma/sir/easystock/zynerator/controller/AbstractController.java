@@ -25,6 +25,7 @@ import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -394,5 +395,10 @@ public class AbstractController<T extends AuditBusinessObject, DTO extends BaseD
             }
         }
         return result;
+    }
+
+
+    public ResponseEntity<List<String>> uploadd(@RequestParam("files") MultipartFile[] multipartFiles) throws Exception{
+        return service.uploadd(multipartFiles);
     }
 }

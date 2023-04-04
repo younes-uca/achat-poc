@@ -51,6 +51,7 @@ import {AdminRoutingModule} from './module/admin/admin-routing.module';
 import {SelectButtonModule} from "primeng/selectbutton";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import { SessionExpiredComponent } from './session-expired/session-expired.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -109,7 +110,8 @@ declarations: [
   AppTopBarComponent,
   AppFooterComponent,
   UserListComponent,
-  HomeComponent
+  HomeComponent,
+  SessionExpiredComponent
 ],
 providers: [
 /*    { provide: LocationStrategy, useClass: HashLocationStrategy }, */

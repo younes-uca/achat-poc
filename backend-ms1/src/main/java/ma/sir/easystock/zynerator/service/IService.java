@@ -3,7 +3,11 @@ package ma.sir.easystock.zynerator.service;
 import ma.sir.easystock.zynerator.bean.BusinessObject;
 import ma.sir.easystock.zynerator.criteria.BaseCriteria;
 import ma.sir.easystock.zynerator.dto.AuditEntityDto;
+import ma.sir.easystock.zynerator.dto.FileTempDto;
 import ma.sir.easystock.zynerator.security.bean.User;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -56,6 +60,6 @@ public interface IService<T extends BusinessObject, Criteria extends BaseCriteri
 
     List<T> importerData(List<T> items);
 
-
+    ResponseEntity<List<String>> uploadd(@RequestParam("files") MultipartFile[] files) throws Exception;
 
 }

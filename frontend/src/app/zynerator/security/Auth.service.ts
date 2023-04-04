@@ -8,6 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Role } from './Role.model';
 import { User } from './User.model';
 import { TokenService } from './Token.service';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -23,19 +24,22 @@ export class AuthService {
 
 
     constructor(private http: HttpClient, private tokenService: TokenService, private router: Router) { }
-         public loginAdmin(username: string, password: string) {
-       this.http.post<any>(this.API + 'login', { username, password }, { observe: 'response' }).subscribe(
-            resp => {
+    public loginAdmin(username: string, password: string) {
+        return this.http.post<any>(this.API + 'login', { username, password }, { observe: 'response' }).pipe(
+            map(resp => {
                 this.error = null;
                 const jwt = resp.headers.get('Authorization');
                 jwt != null ? this.tokenService.saveToken(jwt) : false;
                 this.loadInfos();
                 console.log('you are logged in successfully');
                 this.router.navigate(['/' + environment.rootAppUrl + '/admin']);
-            }, (error: HttpErrorResponse) => {
+                return resp;
+            }),
+            catchError(error => {
                 this.error = error.error;
                 console.log(error);
-            }
+                return error;
+            })
         );
     }
 
