@@ -1,5 +1,8 @@
 package  ma.sir.easystock.ws.converter;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import ma.sir.easystock.zynerator.dto.FileTempDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,6 +13,9 @@ import ma.sir.easystock.zynerator.util.DateUtil;
 import ma.sir.easystock.bean.history.ClientHistory;
 import ma.sir.easystock.bean.core.Client;
 import ma.sir.easystock.ws.dto.ClientDto;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Component
 public class ClientConverter extends AbstractConverter<Client, ClientDto, ClientHistory> {
@@ -41,11 +47,35 @@ public class ClientConverter extends AbstractConverter<Client, ClientDto, Client
                 item.setDescription(dto.getDescription());
             if(StringUtil.isNotEmpty(dto.getCreance()))
                 item.setCreance(dto.getCreance());
+            if(dto.getFile() != null)
+                item.setFile(convert(dto.getFile()));
 
 
         return item;
         }
     }
+
+    public List<FileTempDto> convert(String value) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            return Arrays.asList(objectMapper.readValue(value, FileTempDto[].class));
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String convert(List<FileTempDto> value) {
+        if (!value.isEmpty()) {
+            ObjectMapper objectMapper = new ObjectMapper();
+            try {
+                return objectMapper.writeValueAsString(value);
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return null;
+    }
+
 
     @Override
     public ClientDto toDto(Client item) {
@@ -69,6 +99,8 @@ public class ClientConverter extends AbstractConverter<Client, ClientDto, Client
                 dto.setDescription(item.getDescription());
             if(StringUtil.isNotEmpty(item.getCreance()))
                 dto.setCreance(item.getCreance());
+            if(dto.getFile() != null)
+                item.setFile(convert(dto.getFile()));
         return dto;
         }
     }

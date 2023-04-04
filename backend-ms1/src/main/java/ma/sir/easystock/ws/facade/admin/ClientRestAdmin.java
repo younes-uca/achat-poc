@@ -34,9 +34,10 @@ public class ClientRestAdmin  extends AbstractController<Client, ClientDto, Clie
     }
 
     @RequestMapping(value = "upload-multiple", method = RequestMethod.POST, consumes = "multipart/form-data")
-    public ResponseEntity<List<FileTempDto>> uploadMultipleFileAndGetChecksum(@RequestBody MultipartFile[] files) throws Exception {
+    public ResponseEntity<List<FileTempDto>> uploadMultipleFileAndGetChecksum(@RequestParam("files") MultipartFile[] files) throws Exception {
         return super.uploadMultipleFileAndGetChecksum(files);
     }
+
 
     @ApiOperation("Finds a list of all clients")
     @GetMapping("")

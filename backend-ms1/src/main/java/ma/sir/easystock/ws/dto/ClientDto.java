@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import ma.sir.easystock.zynerator.dto.FileTempDto;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -19,7 +20,15 @@ public class ClientDto  extends AuditBaseDto {
     private FileTempDto adresseAsFileTempDto  ;
     private String description  ;
     private BigDecimal creance  ;
+    private List<FileTempDto> file;
 
+    public List<FileTempDto> getFile() {
+        return file;
+    }
+
+    public void setFile(List<FileTempDto> file) {
+        this.file = file;
+    }
 
     public FileTempDto getAdresseAsFileTempDto() {
         return adresseAsFileTempDto;
