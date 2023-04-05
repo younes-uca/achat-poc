@@ -16,7 +16,7 @@ public class ClientDto  extends AuditBaseDto {
     private String nom  ;
     private String tel  ;
     private String email  ;
-    private String adresse  ;
+    private FileTempDto adresse  ;
     private FileTempDto adresseAsFileTempDto  ;
     private String description  ;
     private BigDecimal creance  ;
@@ -77,10 +77,10 @@ public class ClientDto  extends AuditBaseDto {
     }
 
     @Log
-    public String getAdresse(){
+    public FileTempDto getAdresse(){
         return this.adresse;
     }
-    public void setAdresse(String adresse){
+    public void setAdresse(FileTempDto adresse){
         this.adresse = adresse;
     }
 

@@ -41,8 +41,8 @@ public class ClientConverter extends AbstractConverter<Client, ClientDto, Client
                 item.setTel(dto.getTel());
             if(StringUtil.isNotEmpty(dto.getEmail()))
                 item.setEmail(dto.getEmail());
-            if(StringUtil.isNotEmpty(dto.getAdresse()))
-                item.setAdresse(dto.getAdresse());
+            if((dto.getAdresse() != null))
+                item.setAdresse(convert(dto.getAdresse()));
             if(StringUtil.isNotEmpty(dto.getDescription()))
                 item.setDescription(dto.getDescription());
             if(StringUtil.isNotEmpty(dto.getCreance()))
@@ -94,7 +94,7 @@ public class ClientConverter extends AbstractConverter<Client, ClientDto, Client
             if(StringUtil.isNotEmpty(item.getEmail()))
                 dto.setEmail(item.getEmail());
             if(StringUtil.isNotEmpty(item.getAdresse()))
-                dto.setAdresse(item.getAdresse());
+                dto.setAdresse(convertOne(item.getAdresse()));
             if(StringUtil.isNotEmpty(item.getDescription()))
                 dto.setDescription(item.getDescription());
             if(StringUtil.isNotEmpty(item.getCreance()))

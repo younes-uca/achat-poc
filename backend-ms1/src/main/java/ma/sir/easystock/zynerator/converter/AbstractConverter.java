@@ -1,9 +1,12 @@
 package ma.sir.easystock.zynerator.converter;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import ma.sir.easystock.zynerator.bean.Etablissement;
 import ma.sir.easystock.zynerator.dto.EtablissementDto;
 
+import ma.sir.easystock.zynerator.dto.FileTempDto;
 import ma.sir.easystock.zynerator.util.ListUtil;
 import ma.sir.easystock.zynerator.audit.AuditBusinessObject;
 import ma.sir.easystock.zynerator.bean.BusinessObject;
@@ -16,6 +19,7 @@ import ma.sir.easystock.zynerator.util.Utils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -210,5 +214,45 @@ public abstract class AbstractConverter<T extends BusinessObject, DTO extends Ba
 
     public void setMaxLevel(int maxLevel) {
         this.maxLevel = maxLevel;
+    }
+
+    public List<FileTempDto> convert(String value) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            return Arrays.asList(objectMapper.readValue(value, FileTempDto[].class));
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public FileTempDto convertOne(String value) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            return objectMapper.readValue(value, FileTempDto.class);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String convert(List<FileTempDto> value) {
+        if (!value.isEmpty()) {
+            ObjectMapper objectMapper = new ObjectMapper();
+            try {
+                return objectMapper.writeValueAsString(value);
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return null;
+    }
+
+    public String convert(FileTempDto value) {
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            try {
+                return objectMapper.writeValueAsString(value);
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
     }
 }
