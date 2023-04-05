@@ -39,15 +39,6 @@ public class Client    extends AuditBusinessObject   {
     private String description;
     private BigDecimal creance = BigDecimal.ZERO;
 
-    private String file;
-
-    public String getFile() {
-        return file;
-    }
-
-    public void setFile(String file) {
-        this.file = file;
-    }
 
     public Client(){
         super();

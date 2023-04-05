@@ -396,9 +396,4 @@ public class AbstractController<T extends AuditBusinessObject, DTO extends BaseD
         }
         return result;
     }
-
-
-    public ResponseEntity<List<String>> uploadd(@RequestParam("files") MultipartFile[] multipartFiles) throws Exception{
-        return service.uploadd(multipartFiles);
-    }
 }

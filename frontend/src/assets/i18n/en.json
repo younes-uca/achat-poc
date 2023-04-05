@@ -1,10 +1,9 @@
 {
     "new" : "New",
-    "search": "Search",
     "export": "Export",
     "validate": "Validate",
     "from-to": "Elements from {first} to {last} (total {totalRecords})",
-    "search": "Seach...",
+    "search": "Search...",
     "delete": "Delete",
 
 

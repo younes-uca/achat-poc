@@ -47,8 +47,6 @@ public class ClientConverter extends AbstractConverter<Client, ClientDto, Client
                 item.setDescription(dto.getDescription());
             if(StringUtil.isNotEmpty(dto.getCreance()))
                 item.setCreance(dto.getCreance());
-            if(dto.getFile() != null)
-                item.setFile(convert(dto.getFile()));
 
 
         return item;
@@ -99,8 +97,6 @@ public class ClientConverter extends AbstractConverter<Client, ClientDto, Client
                 dto.setDescription(item.getDescription());
             if(StringUtil.isNotEmpty(item.getCreance()))
                 dto.setCreance(item.getCreance());
-            if(dto.getFile() != null)
-                item.setFile(convert(dto.getFile()));
         return dto;
         }
     }

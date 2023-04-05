@@ -451,15 +451,4 @@ public abstract class AbstractServiceImpl<T extends AuditBusinessObject, H exten
         }
         return result;
     }
-
-    public ResponseEntity<List<String>> uploadd(@RequestParam("files") MultipartFile[] multipartFiles) throws Exception {
-        List<String> filenames = new ArrayList<>();
-        for (MultipartFile file: multipartFiles) {
-            String filename = StringUtils.cleanPath(file.getOriginalFilename());
-            Path fileStorage = get(UPLOADED_FOLDER, filename).toAbsolutePath().normalize();
-            copy(file.getInputStream(), fileStorage, REPLACE_EXISTING);
-            filenames.add(filename);
-        }
-     return ResponseEntity.ok().body(filenames);
-    }
 }

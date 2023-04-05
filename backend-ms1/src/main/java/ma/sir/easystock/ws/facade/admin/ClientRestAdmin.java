@@ -38,11 +38,6 @@ public class ClientRestAdmin  extends AbstractController<Client, ClientDto, Clie
         return super.uploadMultipleFileAndGetChecksum(files);
     }
 
-    @PostMapping(value = "uploadd")
-    public ResponseEntity<List<String>> uploadd(@RequestParam("files") MultipartFile[] files) throws Exception {
-        return super.uploadd(files);
-    }
-
 
     @ApiOperation("Finds a list of all clients")
     @GetMapping("")

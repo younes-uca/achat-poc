@@ -11,6 +11,7 @@ import {AbstractService} from 'src/app/zynerator/service/AbstractService';
 import {BaseDto} from 'src/app/zynerator/dto/BaseDto.model';
 import {BaseCriteria} from 'src/app/zynerator/criteria/BaseCriteria.model';
 import {StringUtilService} from 'src/app/zynerator/util/StringUtil.service';
+import { FileTempDto } from '../dto/FileTempDto.model';
 @Injectable()
 export class AbstractCreateController<DTO extends BaseDto, CRITERIA extends BaseCriteria, SERVICE extends AbstractService<DTO, CRITERIA>> {
 
@@ -214,5 +215,21 @@ export class AbstractCreateController<DTO extends BaseDto, CRITERIA extends Base
 
     set activeTab(value: number) {
         this._activeTab = value;
+    }
+
+    get fileTempDto(): FileTempDto {
+        return this.myService.fileTempDto;
+    }
+
+    set fileTempDto(value: FileTempDto) {
+        this.myService.fileTempDto = value;
+    }
+
+    get fileTempDtoList(): FileTempDto[] {
+        return this.myService.fileTempDtoList;
+    }
+
+    set fileTempDtoList(value: FileTempDto[]) {
+        this.myService.fileTempDtoList = value;
     }
 }

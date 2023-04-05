@@ -1,3 +1,4 @@
+import { FileTempDto } from './../../../../../../zynerator/dto/FileTempDto.model';
 import {Component, OnInit} from '@angular/core';
 
 import {RoleService} from 'src/app/zynerator/security/Role.service';
@@ -31,6 +32,11 @@ export class ClientCreateAdminComponent extends AbstractCreateController<ClientD
     }
 
     ngOnInit(): void {
+    }
+
+    public save(): void {
+        this.item.adresse = this.fileTempDto;
+        super.save();
     }
 
 

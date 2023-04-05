@@ -23,6 +23,8 @@ export abstract class AbstractService<DTO extends BaseDto, CRITERIA extends Base
     protected _next = true;
     protected _validate = false;
     private _steps: MenuItem[];
+    protected _fileTempDto: FileTempDto;
+    protected _fileTempDtoList: FileTempDto[];
 
 
     public initStepper(): void {
@@ -72,11 +74,11 @@ export abstract class AbstractService<DTO extends BaseDto, CRITERIA extends Base
 
 
     public upload(formData: FormData) {
-        this.httpClient.post<FileTempDto>(this.API + 'upload', formData).subscribe(data=> console.log(data))
+        this.httpClient.post<FileTempDto>(this.API + 'upload', formData).subscribe(data=> this.fileTempDto = data);
 
     }
     public uploadMultiple(formData: FormData) {
-        this.httpClient.post<FileTempDto[]>(this.API + 'upload-multiple', formData).subscribe(data=> console.log(data))
+        this.httpClient.post<FileTempDto[]>(this.API + 'upload-multiple', formData).subscribe(data=> this.fileTempDtoList = data);
 
     }
 
@@ -221,4 +223,22 @@ export abstract class AbstractService<DTO extends BaseDto, CRITERIA extends Base
     set steps(value: MenuItem[]) {
         this._steps = value;
     }
+    
+
+    get fileTempDto(): FileTempDto {
+        return this._fileTempDto;
+    }
+
+    set fileTempDto(value: FileTempDto) {
+        this._fileTempDto = value;
+    }
+
+    get fileTempDtoList(): FileTempDto[] {
+        return this._fileTempDtoList;
+    }
+
+    set fileTempDtoList(value: FileTempDto[]) {
+        this._fileTempDtoList = value;
+    }
+    
 }
