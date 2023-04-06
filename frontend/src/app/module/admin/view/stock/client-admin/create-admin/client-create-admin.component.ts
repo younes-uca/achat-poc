@@ -37,7 +37,7 @@ export class ClientCreateAdminComponent extends AbstractCreateController<ClientD
     }
 
     public save(): void {
-        this.item.adresse = this.fileTempDto;
+        this.item.adresse = this.fileTempDtosForOne[0];
         super.save();
     }
 

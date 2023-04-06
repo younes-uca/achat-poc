@@ -60,4 +60,8 @@ public interface IService<T extends BusinessObject, Criteria extends BaseCriteri
 
     List<T> importerData(List<T> items);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4896681cd76ce3bc859e5acc96a8f9fbe92523e4
 }

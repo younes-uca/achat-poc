@@ -53,7 +53,7 @@
                         <!--    <p-fileUpload name="file" [customUpload]="true" (uploadHandler)="onSelectedFile($event)"
                                         [auto]="true"></p-fileUpload>-->
                                         <label></label>
-                        <p-fileUpload name="files" [customUpload]="true" (uploadHandler)="uploadOne($event)"
+                        <p-fileUpload name="files" [customUpload]="true" (uploadHandler)="uploadOne($event, 0)"
                                       [auto]="true"></p-fileUpload>
                                       <button (click)="downloadFile()">Download File</button>
                     </div>

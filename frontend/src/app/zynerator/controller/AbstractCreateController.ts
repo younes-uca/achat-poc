@@ -76,13 +76,13 @@ export class AbstractCreateController<DTO extends BaseDto, CRITERIA extends Base
     }
 
 
-    public uploadOne(event): void{
+    public uploadOne(event, i: number): void{
         this.file = event.files[0];
         console.log(event.files[0]);
         console.log(this.file);
         let formData = new FormData();
         formData.append('file',this.file);
-        this.myService.upload(formData);
+        this.myService.upload(formData, i);
     }
 
     public uploadMultiple(event): void{
@@ -233,19 +233,19 @@ export class AbstractCreateController<DTO extends BaseDto, CRITERIA extends Base
         this._activeTab = value;
     }
 
-    get fileTempDto(): FileTempDto {
-        return this.myService.fileTempDto;
+    get fileTempDtos(): FileTempDto[] {
+        return this.myService.fileTempDtos;
     }
 
-    set fileTempDto(value: FileTempDto) {
-        this.myService.fileTempDto = value;
+    set fileTempDtos(value: FileTempDto[]) {
+        this.myService.fileTempDtos = value;
     }
 
-    get fileTempDtoList(): FileTempDto[] {
-        return this.myService.fileTempDtoList;
+    get fileTempDtosForOne(): FileTempDto[] {
+        return this.myService.fileTempDtosForOne;
     }
 
-    set fileTempDtoList(value: FileTempDto[]) {
-        this.myService.fileTempDtoList = value;
+    set fileTempDtosForOne(value: FileTempDto[]) {
+        this.myService.fileTempDtosForOne = value;
     }
 }

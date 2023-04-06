@@ -24,8 +24,8 @@ export abstract class AbstractService<DTO extends BaseDto, CRITERIA extends Base
     protected _next = true;
     protected _validate = false;
     private _steps: MenuItem[];
-    protected _fileTempDto: FileTempDto;
-    protected _fileTempDtoList: FileTempDto[];
+    protected _fileTempDtosForOne: FileTempDto[];
+    protected _fileTempDtos: FileTempDto[];
 
 
     public initStepper(): void {
@@ -74,12 +74,13 @@ export abstract class AbstractService<DTO extends BaseDto, CRITERIA extends Base
     }
 
 
-    public upload(formData: FormData) {
-        this.httpClient.post<FileTempDto>(this.API + 'upload', formData).subscribe(data=> this.fileTempDto = data);
+    public upload(formData: FormData, i: number) {
+        this.httpClient.post<FileTempDto>(this.API + 'upload', formData).subscribe(data=> this.fileTempDtosForOne[i] = data);
 
     }
+
     public uploadMultiple(formData: FormData) {
-        this.httpClient.post<FileTempDto[]>(this.API + 'upload-multiple', formData).subscribe(data=> this.fileTempDtoList = data);
+        this.httpClient.post<FileTempDto[]>(this.API + 'upload-multiple', formData).subscribe(data=> console.log(data));
 
     }
 
@@ -236,20 +237,20 @@ export abstract class AbstractService<DTO extends BaseDto, CRITERIA extends Base
     }
     
 
-    get fileTempDto(): FileTempDto {
-        return this._fileTempDto;
+    get fileTempDtos(): FileTempDto[] {
+        return this._fileTempDtos;
     }
 
-    set fileTempDto(value: FileTempDto) {
-        this._fileTempDto = value;
+    set fileTempDtos(value: FileTempDto[]) {
+        this._fileTempDtos = value;
     }
 
-    get fileTempDtoList(): FileTempDto[] {
-        return this._fileTempDtoList;
+    get fileTempDtosForOne(): FileTempDto[] {
+        return this._fileTempDtosForOne;
     }
 
-    set fileTempDtoList(value: FileTempDto[]) {
-        this._fileTempDtoList = value;
+    set fileTempDtosForOne(value: FileTempDto[]) {
+        this._fileTempDtosForOne = value;
     }
     
 }
