@@ -9,6 +9,9 @@ import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import ma.sir.easystock.zynerator.audit.AuditBusinessObject;
+import ma.sir.easystock.zynerator.dto.FileDto;
+import ma.sir.easystock.zynerator.dto.FileTempDto;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -39,6 +42,15 @@ public class Client    extends AuditBusinessObject   {
     private String description;
     private BigDecimal creance = BigDecimal.ZERO;
 
+    private FileDto file;
+
+    public FileDto getFile() {
+        return file;
+    }
+
+    public void setFile(FileDto file) {
+        this.file = file;
+    }
 
     public Client(){
         super();

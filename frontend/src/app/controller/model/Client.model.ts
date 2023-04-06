@@ -8,7 +8,7 @@ export class ClientDto  extends BaseDto{
     public nom: string;
     public tel: string;
     public email: string;
-    public adresse: FileTempDto[];
+    public adresse: FileTempDto;
     public description: string;
     public creance: number;
     public creanceMax: string ;

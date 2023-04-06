@@ -55,6 +55,7 @@
                                         <label></label>
                         <p-fileUpload name="files" [customUpload]="true" (uploadHandler)="uploadOne($event)"
                                       [auto]="true"></p-fileUpload>
+                                      <button (click)="downloadFile()">Download File</button>
                     </div>
 
                     <div class="field col-12 md:col-4">
@@ -65,6 +66,16 @@
 
                     </div>
 
+                    <div *ngIf="filenames?.length > 0" class="js-upload-finished">
+                        <h3>Processed files</h3>
+                        <div *ngFor="let filename of filenames" class="list-group">
+                          <a (click)="downloadFiles(filename)" class="list-group-item list-group-item-success" style="cursor: pointer;">
+                            {{ filename }}            
+                            <a class="alert-success float-right">Download</a>
+                          </a><br>
+                        </div>
+                      </div>
+
                     <div class="field col-12 md:col-4">
                         <label for="7">{{'clientCreance' | translate}}</label>
                         <p-inputNumber class="mb-2 mr-2" id="7" placeholder="{{'clientCreance' | translate}}"
@@ -72,6 +83,7 @@
                         </p-inputNumber>
 
                     </div>
+
 
                 </div>
             </p-tabPanel>

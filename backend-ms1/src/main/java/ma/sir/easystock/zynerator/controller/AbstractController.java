@@ -343,16 +343,17 @@ public class AbstractController<T extends AuditBusinessObject, DTO extends BaseD
     }
 
     // Download file
-    protected ResponseEntity<InputStreamResource> getFileResource(String fichier, String fileName) throws Exception {
+    public ResponseEntity<InputStreamResource> getFileResource(String fichier) throws Exception {
         if (fichier != null && !fichier.isEmpty()) {
             File file = new File(UPLOADED_FOLDER + fichier);
             if (file.exists()) {
                 FileInputStream inputStream = new FileInputStream(file);
                 InputStreamResource inputStreamResource = new InputStreamResource(inputStream);
+                String fileName = FileUtils.getFileName(file.getName());
                 return ResponseEntity.ok().eTag(fileName).contentLength(file.length()).contentType(MediaType.parseMediaType(Files.probeContentType(file.toPath()))).body(inputStreamResource);
             }
         }
-        return new ResponseEntity<InputStreamResource>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 

@@ -15,18 +15,34 @@ import ma.sir.easystock.zynerator.dto.AuditEntityDto;
 import ma.sir.easystock.zynerator.dto.FileTempDto;
 import ma.sir.easystock.zynerator.util.PaginatedList;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import ma.sir.easystock.zynerator.process.Result;
 import org.springframework.web.multipart.MultipartFile;
 
+import static java.nio.file.Paths.get;
+import static org.springframework.http.HttpHeaders.CONTENT_DISPOSITION;
+
 @Api("Manages client services")
 @RestController
 @RequestMapping("/api/admin/client/")
 public class ClientRestAdmin  extends AbstractController<Client, ClientDto, ClientHistory, ClientCriteria, ClientHistoryCriteria, ClientAdminService, ClientConverter> {
+
+    public static final String DIRECTORY = System.getProperty("D:/upload/");
 
     @RequestMapping(value = "upload", method = RequestMethod.POST, consumes = "multipart/form-data")
     public ResponseEntity<FileTempDto> uploadFileAndGetChecksum(@RequestBody MultipartFile file) throws Exception {
@@ -36,6 +52,15 @@ public class ClientRestAdmin  extends AbstractController<Client, ClientDto, Clie
     @RequestMapping(value = "upload-multiple", method = RequestMethod.POST, consumes = "multipart/form-data")
     public ResponseEntity<List<FileTempDto>> uploadMultipleFileAndGetChecksum(@RequestParam("files") MultipartFile[] files) throws Exception {
         return super.uploadMultipleFileAndGetChecksum(files);
+    }
+
+    @ApiOperation("download file")
+    @GetMapping("downloadFile/{id}")
+    public ResponseEntity<InputStreamResource> downloadCr(@PathVariable Long id,String[] includes, String[] excludes) throws Exception {
+        Client client = service.findById(id);
+        if(client != null && client.getFile() != null)
+            return getFileResource(client.getFile().getFilePath());
+        return new ResponseEntity("", HttpStatus.CONFLICT);
     }
 
 

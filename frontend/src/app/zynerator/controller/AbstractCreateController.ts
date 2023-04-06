@@ -3,6 +3,8 @@ import {DatePipe} from '@angular/common';
 import {Router} from '@angular/router';
 import {Injectable} from '@angular/core';
 import {MenuItem} from "primeng/api";
+import { HttpErrorResponse, HttpEvent, HttpEventType } from '@angular/common/http';
+import { saveAs } from 'file-saver';
 
 import {environment} from 'src/environments/environment';
 
@@ -27,6 +29,8 @@ export class AbstractCreateController<DTO extends BaseDto, CRITERIA extends Base
     private _activeTab = 0;
     private file: any;
     private files: any;
+    filenames: string[] = [];
+    fileStatus = { status: '', requestType: '', percent: 0 };
 
     public constructor(datePipe: DatePipe, service: SERVICE, messageService: MessageService,
               confirmationService: ConfirmationService, roleService: RoleService, router: Router
@@ -90,6 +94,18 @@ export class AbstractCreateController<DTO extends BaseDto, CRITERIA extends Base
         }
         this.myService.uploadMultiple(formData);
     }
+
+    public downloadFile() {
+        const id = 7;
+        this.myService.downloadFile(id).subscribe((blob: Blob) => {
+            console.log(blob);
+          const link = document.createElement('a');
+          link.href = URL.createObjectURL(blob);
+          link.download = 'tmp929678177556503285.png'; // replace with the actual file name
+          link.click();
+        });
+      }
+    
 
     public validateForm(): void {
     }

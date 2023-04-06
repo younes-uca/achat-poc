@@ -3,6 +3,7 @@ package  ma.sir.easystock.ws.dto;
 import ma.sir.easystock.zynerator.audit.Log;
 import ma.sir.easystock.zynerator.dto.AuditBaseDto;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import ma.sir.easystock.zynerator.dto.FileDto;
 import ma.sir.easystock.zynerator.dto.FileTempDto;
 
 import java.math.BigDecimal;
@@ -20,6 +21,15 @@ public class ClientDto  extends AuditBaseDto {
     private FileTempDto adresseAsFileTempDto  ;
     private String description  ;
     private BigDecimal creance  ;
+    private FileDto file;
+
+    public FileDto getFile() {
+        return file;
+    }
+
+    public void setFile(FileDto file) {
+        this.file = file;
+    }
 
     public FileTempDto getAdresseAsFileTempDto() {
         return adresseAsFileTempDto;

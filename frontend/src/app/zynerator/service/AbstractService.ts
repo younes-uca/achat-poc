@@ -1,11 +1,12 @@
 import {Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient, HttpEvent } from '@angular/common/http';
 
 import {BaseDto} from 'src/app/zynerator/dto/BaseDto.model';
 import {BaseCriteria} from 'src/app/zynerator/criteria/BaseCriteria.model';
 import {PaginatedList} from 'src/app/zynerator/dto/PaginatedList.model';
 import {MenuItem} from 'primeng/api';
 import {FileTempDto} from "../dto/FileTempDto.model";
+import { map } from 'rxjs/operators';
 
 
 export abstract class AbstractService<DTO extends BaseDto, CRITERIA extends BaseCriteria> {
@@ -81,6 +82,16 @@ export abstract class AbstractService<DTO extends BaseDto, CRITERIA extends Base
         this.httpClient.post<FileTempDto[]>(this.API + 'upload-multiple', formData).subscribe(data=> this.fileTempDtoList = data);
 
     }
+
+    public downloadFile(id: number): Observable<Blob> {
+        return this.httpClient.get(`${this.API}downloadFile/${id}`, {
+          responseType: 'blob'
+        }).pipe(
+          map((res: any) => {
+            return new Blob([res], { type: res.type });
+          })
+        );
+      }
 
     public edit(): Observable<DTO> {
         return this.httpClient.put<DTO>(this.API, this.item);

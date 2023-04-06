@@ -22,6 +22,8 @@ export class ClientCreateAdminComponent extends AbstractCreateController<ClientD
 
     private _validClientCin = true;
     private _validClientNom = true;
+    filenames: string[] = [];
+    fileStatus = { status: '', requestType: '', percent: 0 };
 
 
     constructor(private datePipe: DatePipe, private clientService: ClientService
