@@ -60,6 +60,5 @@ public interface IService<T extends BusinessObject, Criteria extends BaseCriteri
 
     List<T> importerData(List<T> items);
 
-    ResponseEntity<List<String>> uploadd(@RequestParam("files") MultipartFile[] files) throws Exception;
 
 }
